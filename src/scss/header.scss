@@ -1,0 +1,32 @@
+@import "./helpers/_vars";
+@import "./helpers/_mixins";
+
+// BASE
+@import "./base/_reset";
+@import "./base/_fonts";
+@import "./base/_general";
+@import "./base/_layout";
+
+// COMPONENTS
+// @import "./components/_burger";
+// @import "./components/_menuMobile";
+// @import "./components/_scrollUp";
+// @import "./components/_video";
+
+// PLUGINS
+// @import "./plugins/_remodal";
+// @import "./plugins/_slick";
+// @import "./plugins/_fancybox";
+// @import "./plugins/_remodal-customize";
+// @import "./plugins/_slick-customize";
+
+// HACKS
+@import "./helpers/_hacks";
+
+// .svg with mask {
+//     display: none;
+// }
+
+// img for mask
+// clip-path: url('#figure');
+// transform: translateZ(1px);
