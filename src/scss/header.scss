@@ -30,3 +30,20 @@
 // img for mask
 // clip-path: url('#figure');
 // transform: translateZ(1px);
+
+div {
+  @include respond-to(phone) {
+  }
+  @include respond-to(phone-xl) {
+  }
+  @include respond-to(note) {
+  }
+  @include respond-to(tablet) {
+  }
+  @include respond-to(laptop) {
+  }
+  @include respond-to(desktop) {
+  }
+  @include respond-to(desktop-xl) {
+  }
+}
