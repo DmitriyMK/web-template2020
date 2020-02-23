@@ -20,7 +20,7 @@ gulp.task('server', function (done) {
       config.dest.css + '/*.css',
       config.dest.img + '/**/*'
     ],
-    port: util.env.port || 8080,
+    port: util.env.port || 8000,
     logLevel: 'info', // 'debug', 'info', 'silent', 'warn'
     logConnections: false,
     logFileChanges: true,
