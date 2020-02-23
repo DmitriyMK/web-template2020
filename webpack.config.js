@@ -15,7 +15,7 @@ function createConfig(env) {
   isProduction = env === 'production';
 
   webpackConfig = {
-    mode: isProduction?'production':'development',
+    mode: isProduction ? 'production' : 'development',
     context: path.join(__dirname, config.src.js),
     entry: {
       // vendor: ['jquery'],
@@ -67,7 +67,7 @@ function createConfig(env) {
         'debug.addIndicators': path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js'),
       },
     },
-    optimization :{
+    optimization: {
       minimize: isProduction
     },
     module: {
@@ -93,7 +93,7 @@ function createConfig(env) {
         },
         { test: /\.(glsl|frag|vert)$/, loader: 'raw-loader', exclude: /node_modules/ },
         { test: /\.(glsl|frag|vert)$/, loader: 'glslify-loader', exclude: /node_modules/ }
-        ],
+      ],
     },
   };
 
@@ -101,6 +101,11 @@ function createConfig(env) {
     webpackConfig.plugins.push(
       new webpack.LoaderOptionsPlugin({
         minimize: true,
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+        },
       })
     );
   }

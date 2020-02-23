@@ -29,30 +29,30 @@ function handler(err, stats, cb) {
   if (typeof cb === 'function') cb();
 }
 
-// gulp.task('webpack', gulp.parallel(function(done) {
-//     webpack(webpackConfig(config.env)).run(function(err, stats) {
-//         handler(err, stats, done);
-//     });
-// }));
+gulp.task('webpack', gulp.parallel(function (done) {
+  webpack(webpackConfig(config.env)).run(function (err, stats) {
+    handler(err, stats, done);
+  });
+}));
 
 
 
-gulp.task('webpack', function () {
-  return gulp.src('src/js/app.js')
-    .pipe(webpackStream(webpackConfig(config.env), webpack, function (err, stats) {
-      /* Use stats to do more things if needed */
-      handler(err, stats);
-      // return false;
-    }))
-    .pipe(gulp.dest('dist/'));
-});
-
-// gulp.task('webpack:watch', function() {
-//     webpack(webpackConfig(config.env)).watch({
-//         aggregateTimeout: 100,
-//         poll: false
-//     }, handler);
+// gulp.task('webpack', function () {
+//   return gulp.src('src/js/app.js')
+//     .pipe(webpackStream(webpackConfig(config.env), webpack, function (err, stats) {
+//       /* Use stats to do more things if needed */
+//       handler(err, stats);
+//       // return false;
+//     }))
+//     .pipe(gulp.dest('build/'));
 // });
+
+gulp.task('webpack:watch', function () {
+  webpack(webpackConfig(config.env)).watch({
+    aggregateTimeout: 100,
+    poll: false
+  }, handler);
+});
 
 
 let build = function (gulp) {

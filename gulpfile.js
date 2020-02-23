@@ -37,7 +37,7 @@ function build(cb) {
     "svgo",
     "sass",
     "nunjucks",
-    // 'webpack',
+    'webpack',
     "copy"
     // cb
   );
@@ -61,8 +61,8 @@ gulp.task(
     "svgo",
     "sass",
     "nunjucks",
-    // 'webpack',
-    "copy",
+    'webpack',
+    // "copy",
     // "list-pages"
   )
 );
@@ -75,7 +75,7 @@ gulp.task(
     "svgo",
     "sass",
     "nunjucks",
-    // 'webpack',
+    'webpack',
     // "list-pages",
     "copy"
   )
@@ -89,7 +89,7 @@ gulp.task(
     "sprite:svg:watch",
     "svgo:watch",
     // "list-pages:watch",
-    // 'webpack:watch',
+    'webpack:watch',
     "sass:watch"
   )
 );
