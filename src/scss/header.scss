@@ -1,10 +1,14 @@
 @import "./helpers/_vars";
+
 @import "./helpers/_mixins";
 
 // BASE
 @import "./base/_reset";
+
 @import "./base/_fonts";
+
 @import "./base/_general";
+
 @import "./base/_layout";
 
 // COMPONENTS
@@ -35,18 +39,24 @@
 // transform: translateZ(1px);
 
 div {
-  @include respond-to(phone) {
-  }
-  @include respond-to(phone-xl) {
-  }
-  @include respond-to(note) {
-  }
-  @include respond-to(tablet) {
-  }
-  @include respond-to(laptop) {
-  }
-  @include respond-to(desktop) {
-  }
-  @include respond-to(desktop-xl) {
-  }
+	@include respond-to(phone) {
+	}
+
+	@include respond-to(phone-xl) {
+	}
+
+	@include respond-to(note) {
+	}
+
+	@include respond-to(tablet) {
+	}
+
+	@include respond-to(laptop) {
+	}
+
+	@include respond-to(desktop) {
+	}
+
+	@include respond-to(desktop-xl) {
+	}
 }

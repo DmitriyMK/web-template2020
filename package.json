@@ -14,7 +14,6 @@
       "htmlhint --config .htmlhintrc"
     ]
   },
-  "authors": "Coderiver <html@coderiver.com.ua>",
   "devDependencies": {
     "@babel/preset-env": "^7.8.4",
     "autoprefixer": "^9.4.10",
@@ -60,10 +59,13 @@
     "lodash": "^4.17.11",
     "lost": "^8.3.1",
     "postcss-csso": "^3.0.0",
+    "prettier": "^2.0.4",
     "raw-loader": "^1.0.0",
     "require-dir": "^1.2.0",
     "require-yaml": "^0.0.1",
     "run-sequence": "^2.2.1",
+    "stylelint-order": "^4.0.0",
+    "stylelint-prettier": "^1.1.2",
     "through2": "^3.0.1",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.1.0"
@@ -72,6 +74,10 @@
     "@babel/core": "^7.3.4",
     "gulp-hub": "^4.2.0",
     "gulp-load-plugins": "^1.5.0",
+    "stylelint": "^13.3.2",
+    "stylelint-config-airbnb": "0.0.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.17.0",
     "webpack-stream": "^5.2.1"
   }
 }

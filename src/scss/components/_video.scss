@@ -1,11 +1,14 @@
 .video-responsive { 
 	position: relative; 
-	padding-bottom: 56.25%; 
 	height: 0; 
-	overflow:hidden; 
+	padding-bottom: 56.25%; 
+	overflow: hidden; 
 } 
-.video-responsive iframe, 
-.video-responsive object, 
+
+.video-responsive iframe,
+ 
+.video-responsive object,
+ 
 .video-responsive embed {
 	position: absolute; 
 	top: 0; 

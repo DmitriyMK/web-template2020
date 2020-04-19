@@ -1,4 +1,5 @@
 @import "../helpers/_vars";
+
 @import "../helpers/_mixins";
 
 .footer {
@@ -6,15 +7,21 @@
 
 @include respond-to(phone) {
 }
+
 @include respond-to(phone-xl) {
 }
+
 @include respond-to(note) {
 }
+
 @include respond-to(tablet) {
 }
+
 @include respond-to(laptop) {
 }
+
 @include respond-to(desktop) {
 }
+
 @include respond-to(desktop-xl) {
 }

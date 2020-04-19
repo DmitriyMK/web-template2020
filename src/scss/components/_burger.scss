@@ -1,105 +1,112 @@
 @import "../helpers/_vars";
+
 @import "../helpers/_mixins";
 
 .burger {
-    display: block;
-    position: relative;
-    width: 50px;
-    height: 50px;
-    transition: all 0.6s ease-in-out;
-    background: transparent;
-    border: none;
-    outline: none;
-    z-index: 1000;
-    order: 0;
+	display: block;
+	position: relative;
+	z-index: 1000;
+	order: 0;
+	width: 50px;
+	height: 50px;
+	transition: all .6s ease-in-out;
+	border: 0;
+	outline: none;
+	background: transparent;
 
-    &:hover {
-        cursor: pointer;
+	// &-white {
+	//     background: #fff;
 
-        i {
-            &:before {
-                margin-top: -14px;
-            }
-            &:after {
-                margin-top: 14px;
-            }
-        }
-    }
+	//     &:before,
+	//     &:after {
+	//         background: #fff;
+	//     }
+	// }
 
-    i {
-        display: block;
-        width: 40px;
-        height: 2px;
-        background: #fff;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: all 0.2s ease-in-out;
+	@media screen and (min-width: $tablet+1px) {
+		display: none;
+	}
 
-        &:before,
-        &:after {
-            content: '';
-            position: absolute;
-            height: 2px;
-            background: #fff;
-            width: 40px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.2s ease-in-out;
-        }
+	&:hover {
+		cursor: pointer;
 
-        &:before {
-            margin-top: -12px;
-        }
-        &:after {
-            margin-top: 12px;
-        }
-    }
+		i {
 
-    &.active {
-        background: transparent;
-        i {
-            background: transparent;
-            &:before,
-            &:after {
-                left: -5px;
-                width: 50px;
-            }
-            &:before {
-                transform: rotate(45deg);
-                top: 12px;
-            }
-            &:after {
-                transform: rotate(-45deg);
-                top: -12px;
-            }
-        }
+			&:before {
+				margin-top: -14px;
+			}
 
-        &:hover {
-            i {
-                &:after,
-                &:before {
-                    width: 60px;
-                    margin: 0;
-                    left: -10px;
-                    top: 0;
-                }
-            }
-        }
-    }
+			&:after {
+				margin-top: 14px;
+			}
+		}
+	}
 
-    // &-white {
-    //     background: #fff;
+	i {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 40px;
+		height: 2px;
+		transform: translate(-50%, -50%);
+		transition: all .2s ease-in-out;
+		background: #fff;
 
-    //     &:before,
-    //     &:after {
-    //         background: #fff;
-    //     }
-    // }
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 40px;
+			height: 2px;
+			transform: translate(-50%, -50%);
+			transition: all .2s ease-in-out;
+			background: #fff;
+		}
 
-    @media screen and (min-width: $tablet+1px) {
-        display: none;
-    }
+		&:before {
+			margin-top: -12px;
+		}
+
+		&:after {
+			margin-top: 12px;
+		}
+	}
+
+	&.active {
+		background: transparent;
+
+		i {
+			background: transparent;
+
+			&:before,
+			&:after {
+				left: -5px;
+				width: 50px;
+			}
+
+			&:before {
+				top: 12px;
+				transform: rotate(45deg);
+			}
+
+			&:after {
+				top: -12px;
+				transform: rotate(-45deg);
+			}
+		}
+
+		&:hover {
+
+			i:after,
+			i:before {
+				top: 0;
+				left: -10px;
+				width: 60px;
+				margin: 0;
+			}
+		}
+	}
 }

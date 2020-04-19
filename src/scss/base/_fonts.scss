@@ -1,23 +1,23 @@
 @font-face {
-  font-family: "Roboto";
-  src: url("../../fonts/RobotoLight.woff2") format("woff2"), url("../../fonts/RobotoLight.woff") format("woff");
+	font-family: "Roboto";
 
-  font-weight: 300;
-  font-display: swap;
+	font-weight: 300;
+	src: url("../../fonts/RobotoLight.woff2") format("woff2"), url("../../fonts/RobotoLight.woff") format("woff");
+	font-display: swap;
 }
 
 @font-face {
-  font-family: "Roboto";
-  src: url("../../fonts/RobotoRegular.woff2") format("woff2"), url("../../fonts/RobotoRegular.woff") format("woff");
+	font-family: "Roboto";
 
-  font-weight: 400;
-  font-display: swap;
+	font-weight: 400;
+	src: url("../../fonts/RobotoRegular.woff2") format("woff2"), url("../../fonts/RobotoRegular.woff") format("woff");
+	font-display: swap;
 }
 
 @font-face {
-  font-family: "Roboto";
-  src: url("../../fonts/RobotoBold.woff2") format("woff2"), url("../../fonts/RobotoBold.woff") format("woff");
+	font-family: "Roboto";
 
-  font-weight: 700;
-  font-display: swap;
+	font-weight: 700;
+	src: url("../../fonts/RobotoBold.woff2") format("woff2"), url("../../fonts/RobotoBold.woff") format("woff");
+	font-display: swap;
 }
