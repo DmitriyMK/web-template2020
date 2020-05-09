@@ -6,4 +6,3 @@ function sayHello() {
     window.console.log('Made with love ❤️  ❤️');
   }
 }
-module.exports = sayHello;
