@@ -1,9 +1,9 @@
 var util = require('gulp-util');
 
-var production = util.env.production || util.env.prod || false;
-var destPath = 'build';
+const production = util.env.production || util.env.prod || false;
+const destPath = 'build';
 
-var config = {
+const config = {
   env: 'development',
   production: production,
 
@@ -17,8 +17,8 @@ var config = {
     sassGen: 'src/scss/generated',
     js: 'src/js',
     img: 'src/img',
-    svg: 'src/img/svg',
-    icons: 'src/icons',
+    // svg: 'src/img/svg',
+    // icons: 'src/icons',
     // path to png sources for sprite:png task
     iconsPng: 'src/icons',
     // path to svg sources for sprite:svg task
@@ -27,7 +27,18 @@ var config = {
     iconsFont: 'src/icons',
     fonts: 'src/fonts',
     lib: 'src/lib',
-    data: 'src/data'
+
+    data: 'src/data',
+    svg: 'src/img/svg',
+    icons: 'src/icons',
+    iconsPng: 'src/icons/png',
+    iconsSvgMono: 'src/icons/svg-mono',
+    iconsSvgColor: 'src/icons/svg-colors',
+    iconsFont: 'src/icons',
+    fonts: 'src/fonts',
+    video: 'src/video',
+    php: 'src/php',
+    json: 'src/json'
   },
   dest: {
     root: destPath,
@@ -37,7 +48,10 @@ var config = {
     img: destPath + '/img',
     fonts: destPath + '/fonts',
     lib: destPath + '/lib',
-    data: destPath + '/data'
+    data: destPath + '/data',
+    video: destPath + '/video',
+    php: destPath + '/php',
+    json: destPath + '/json'
   },
 
   setEnv: function (env) {
@@ -59,4 +73,4 @@ var config = {
 
 config.setEnv(production ? 'production' : 'development');
 
-module.exports = config;
+export default config;

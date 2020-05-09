@@ -1,51 +1,26 @@
-var gulp = require('gulp');
-var config = require('../config.js');
+import gulp from 'gulp';
+import config from '../config';
 
-gulp.task('copy:img', function () {
-  return gulp
-    .src([
-      config.src.img + '/**/*.{jpg,png,jpeg,svg,gif}',
-      '!' + config.src.img + '/svgo/**/*.*'
-    ])
-    .pipe(gulp.dest(config.dest.img));
-});
+const copyRootfiles = () => gulp.src(config.src.root + '/*.*').pipe(gulp.dest(config.dest.root));
 
-gulp.task('copy:fonts', function () {
-  return gulp
-    .src(config.src.fonts + '/*.{ttf,eot,woff,woff2}')
-    .pipe(gulp.dest(config.dest.fonts));
-});
+const copyFonts = () =>
+  gulp.src(config.src.fonts + '/*.{woff,woff2,ttf,eot,svg}').pipe(gulp.dest(config.dest.fonts));
 
-gulp.task('copy:data', function () {
-  return gulp
-    .src(config.src.data + '/**/*.*')
-    .pipe(gulp.dest(config.dest.data));
-});
+const copyVideo = () => gulp.src(config.src.video + '/*.*').pipe(gulp.dest(config.dest.video));
 
-gulp.task('copy:lib', function () {
-  return gulp
-    .src(config.src.lib + '/**/*.*')
-    .pipe(gulp.dest(config.dest.lib));
-});
+const copyPhp = () => gulp.src(config.src.php + '/*.*').pipe(gulp.dest(config.dest.php));
 
-gulp.task('copy:rootfiles', function () {
-  return gulp
-    .src(config.src.root + '/*.*')
-    .pipe(gulp.dest(config.dest.root));
-});
+const copyJson = () => gulp.src(config.src.json + '/*.*').pipe(gulp.dest(config.dest.json));
 
+const copyTask = () => gulp.parallel(copyRootfiles, copyFonts, copyVideo, copyPhp, copyJson);
 
-let build = function (gulp) {
-  return gulp.parallel('copy:img', 'copy:fonts');
+const watch = () => () => {
+  gulp.watch(config.src.root + '/*.*', copyRootfiles);
+  gulp.watch(config.src.fonts + '/*.{woff,woff2,ttf,eot,svg}', copyFonts);
+  gulp.watch(config.src.video + '/*.*', copyVideo);
+  gulp.watch(config.src.php + '/*.*', copyPhp);
+  gulp.watch(config.src.json + '/*.*', copyJson);
 };
 
-let watch = function (gulp) {
-  return function () {
-    return gulp.watch(config.src.img + '/*', gulp.parallel('copy:img', 'copy:fonts'));
-  }
-};
-
-
-
-module.exports.build = build;
+module.exports.build = copyTask;
 module.exports.watch = watch;

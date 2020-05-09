@@ -1,92 +1,87 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var postcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var mqpacker = require('css-mqpacker');
-var config = require('../config');
-var csso = require('postcss-csso');
+import gulp from 'gulp';
+import util from 'gulp-util';
+import sass from 'gulp-sass';
+import globImporter from 'node-sass-glob-importer';
+import sourcemaps from 'gulp-sourcemaps';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import objfit from 'postcss-object-fit-images';
+import short from 'postcss-short';
+import svginline from 'postcss-inline-svg';
+import sorting from 'postcss-sorting';
+import pseudoel from 'postcss-pseudoelements';
+import flexbugs from 'postcss-flexbugs-fixes';
+import animations from 'postcss-animation';
+import easings from 'postcss-easings';
+import cssnano from 'cssnano';
+import plumber from 'gulp-plumber';
+import config from '../config';
 
-var processors = [
+// PostCSS Processors
+// short - shorthands -- https://github.com/jonathantneal/postcss-short
+// svginline - work with svg -- https://github.com/TrySound/postcss-inline-svg
+// animations - get animate.css keframes -- https://github.com/zhouwenbin/postcss-animation
+// sorting - keeps rules in order -- https://github.com/hudochenkov/postcss-sorting
+// pseudoel - adds semicollumns -- https://github.com/axa-ch/postcss-pseudoelements
+// flexbugs - fix flex issues -- https://github.com/luisrudge/postcss-flexbugs-fixes
+// easings - gets easings.net -- https://github.com/postcss/postcss-easings
+
+const processors = [
+  short(),
+  svginline(),
+  animations(),
+  easings(),
   autoprefixer({
-    browsers: [
-      'Chrome >= 64',
-      'Explorer >= 11',
-      'Firefox 58',
-      'Edge >= 16',
-      'iOS >= 11',
-      'Opera >= 50',
-      'Safari >= 10',
-      'ChromeAndroid >= 64',
-      'FirefoxAndroid >= 51',
-      'ExplorerMobile >= 11'
-    ],
-    cascade: false
+    remove: true, // remove outdated prefixes?
+    // cascade: false
   }),
-  require('lost'),
-  mqpacker({
-    sort: sortMediaQueries
-  }),
-  csso
+  sorting(),
+  objfit(),
+  pseudoel(),
+  flexbugs(),
 ];
 
-gulp.task('sass', function () {
-  return gulp
+const cssNanoParams = {
+  autoprefixer: false,
+  reduceIdents: {
+    keyframes: false,
+  },
+  discardUnused: {
+    keyframes: false,
+  },
+};
+
+// Sass task
+const task = () =>
+  gulp
     .src(config.src.sass + '/*.{sass,scss}')
-    .pipe(sourcemaps.init())
-    .pipe(sass({
-      outputStyle: config.production ? 'compact' : 'expanded', // nested, expanded, compact, compressed
-      precision: 5
-    }))
+    .pipe(config.production ? util.noop() : sourcemaps.init())
+    .pipe(
+      plumber({
+        errorHandler: config.errorHandler,
+      })
+    )
+    .pipe(
+      sass({
+        importer: globImporter(),
+        outputStyle: config.production ? 'compact' : 'expanded', // nested, expanded, compact, compressed
+        precision: 5,
+        includePaths: ['node_modules', config.src.sass],
+      })
+    )
     .on('error', config.errorHandler)
     .pipe(postcss(processors))
-    .pipe(sourcemaps.write('./'))
+    .pipe(config.production ? util.noop() : sourcemaps.write('.'))
+    .pipe(config.production ? postcss([cssnano(cssNanoParams)]) : util.noop())
     .pipe(gulp.dest(config.dest.css));
-});
 
-// gulp.task('sass:watch', function() {
-//     gulp.watch(config.src.sass + '/**/*.{sass,scss}', ['sass']);
-// });
-
-
-
-function isMax(mq) {
-  return /max-width/.test(mq);
-}
-
-function isMin(mq) {
-  return /min-width/.test(mq);
-}
-
-function sortMediaQueries(a, b) {
-  A = a.replace(/\D/g, '');
-  B = b.replace(/\D/g, '');
-
-  if (isMax(a) && isMax(b)) {
-    return B - A;
-  } else if (isMin(a) && isMin(b)) {
-    return A - B;
-  } else if (isMax(a) && isMin(b)) {
-    return 1;
-  } else if (isMin(a) && isMax(b)) {
-    return -1;
-  }
-
-  return 1;
-}
-
-
-let build = function (gulp) {
-  return gulp.parallel('sass');
+const buildSass = () => task();
+const watch = () => () => {
+  gulp.watch(
+    [config.src.sass + '/**/*.{sass,scss}', config.src.components + '/**/*.{sass,scss}'],
+    buildSass
+  );
 };
 
-let watch = function (gulp) {
-  return function () {
-    gulp.watch(config.src.sass + '/**/*.{sass,scss}', gulp.parallel('sass'));
-  }
-};
-
-
-
-module.exports.build = build;
+module.exports.build = buildSass;
 module.exports.watch = watch;

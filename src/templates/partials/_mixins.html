@@ -1,3 +1,7 @@
-{% macro icon(i) %}
-<svg class="icon icon-{{i}}"><use xlink:href="img/sprite.svg#icon-{{i}}"></use></svg>
+{% macro iconColor(i) %}
+<svg class="icon icon-{{i}}"><use xlink:href="img/sprite-color.svg#ico-color-{{i}}"></use></svg>
+{% endmacro %}
+
+{% macro iconMono(i) %}
+<svg class="icon icon-{{i}}"><use xlink:href="img/sprite-mono.svg#ico-mono-{{i}}"></use></svg>
 {% endmacro %}
