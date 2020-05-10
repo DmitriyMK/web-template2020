@@ -8,23 +8,16 @@
 // object-position: 50% 20%;
 // font-family: 'object-fit: cover; object-position: 50% 20%;';
 
-@media (max-width: $desktop-xl) {
-}
+@media #{$desktop-xl} {}
 
-@media (max-width: $desktop) {
-}
+@media #{$desktop} {}
 
-@media (max-width: $laptop) {
-}
+@media #{$laptop} {}
 
-@media (max-width: $tablet) {
-}
+@media #{$tablet} {}
 
-@media (max-width: $note) {
-}
+@media #{$note} {}
 
-@media (max-width: $phone-xl) {
-}
+@media #{$phone-xl} {}
 
-@media (max-width: $phone) {
-}
+@media #{$phone} {}

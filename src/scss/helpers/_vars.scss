@@ -2,48 +2,24 @@ $ff1: "Roboto", serif;
 $fs: 18px;
 
 // Breakpoints for each query
-$phone: 375px;
-$phone-xl: 479px;
-$note: 767px;
-$tablet: 1024px;
-$laptop: 1366px;
-$desktop: 1680px;
-$desktop-xl: 1920px;
+$phone: "only screen and (max-width: 375px)";
+$phone-xl: "only screen and (max-width: 479px)";
+$note: "only screen and (max-width: 767px)";
+$tablet: "only screen and (max-width: 1024px)";
+$laptop: "only screen and (max-width: 1366px)";
+$desktop: "only screen and (max-width: 1680px)";
+$desktop-xl: "only screen and (max-width: 1920px)";
 
-@mixin respond-to($media) {
-	@if $media == phone {
-		@media (max-width: $phone) {
-			@content;
-		}
-	}
+@media #{$desktop-xl} {}
 
-	@else if $media == phone-xl {
-		@media (max-width: $phone-xl) {
-			@content;
-		}
-	}
+@media #{$desktop} {}
 
-	@else if $media == note {
-		@media (max-width: $note) {
-			@content;
-		}
-	}
+@media #{$laptop} {}
 
-	@else if $media == laptop {
-		@media (min-width: $laptop) {
-			@content;
-		}
-	}
+@media #{$tablet} {}
 
-	@else if $media == desktop {
-		@media (min-width: $desktop) {
-			@content;
-		}
-	}
+@media #{$note} {}
 
-	@else if $media == desktop-xl {
-		@media (min-width: $desktop-xl) {
-			@content;
-		}
-	}
-}
+@media #{$phone-xl} {}
+
+@media #{$phone} {}

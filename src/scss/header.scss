@@ -38,25 +38,17 @@
 // clip-path: url('#figure');
 // transform: translateZ(1px);
 
-div {
-	@include respond-to(phone) {
-	}
+@media #{$desktop-xl} {}
 
-	@include respond-to(phone-xl) {
-	}
+@media #{$desktop} {}
 
-	@include respond-to(note) {
-	}
+@media #{$laptop} {}
 
-	@include respond-to(tablet) {
-	}
+@media #{$tablet} {}
 
-	@include respond-to(laptop) {
-	}
+@media #{$note} {}
 
-	@include respond-to(desktop) {
-	}
+@media #{$phone-xl} {}
 
-	@include respond-to(desktop-xl) {
-	}
-}
+@media #{$phone} {}
+
